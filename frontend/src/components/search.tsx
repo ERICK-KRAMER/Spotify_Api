@@ -4,7 +4,7 @@ import { IoSearchOutline } from "react-icons/io5";
 function Search() {
   return (
     <div className={style.InputSearch}>
-        <input type="text" name="search" placeholder="Song, Artist, User or Album" />
+        <input type="text" name="search" placeholder="Song, Artist, User or Album" autoComplete="off" />
         <IoSearchOutline className={style.icon}/>
     </div>
   )

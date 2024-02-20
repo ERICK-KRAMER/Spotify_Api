@@ -1,11 +1,12 @@
 :root {
     --Primary: #300346;
     --secondary: #590364;
-    --Terciary: #79035D;
+    --Terciary: #60015D;
+    --quartiary: #79035D;
     --fontColorSideBar: #1ED760;
 }
 .sideBar {
-    background-image: linear-gradient(var(--Primary), var(--secondary), var(--Terciary));
+    background-image: linear-gradient(var(--Primary), var(--secondary), var(--Terciary), var(--quartiary));
     height: 100vh;
     width: 350px;
     color: #fff;
@@ -16,7 +17,7 @@
     align-items: center;
     height: 17%;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 .logo img {
     width: 100px;

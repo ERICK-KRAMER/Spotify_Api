@@ -1,3 +1,11 @@
+:root {
+    --Primary: #300346;
+    --secondary: #590364;
+    --Terciary: #60015D;
+    --quartiary: #79035D;
+    --fontColorSideBar: #1ED760;
+    --fontColor: #fff;
+}
 *{
     margin: 0;
     padding: 0;
@@ -6,4 +14,11 @@
 body {
     font-family: sans-serif;
     height: 100vh;
+    /* background-color: #29013F; */
+    background-image: linear-gradient(var(--Primary), #29013fe8);
+}
+#root {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
 }

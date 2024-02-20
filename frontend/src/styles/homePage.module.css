@@ -1,0 +1,31 @@
+:root {
+    --Primary: #300346;
+    --secondary: #590364;
+    --Terciary: #60015D;
+    --quartiary: #79035D;
+    --fontColorSideBar: #1ED760;
+    --fontColor: #fff;
+}
+.container {
+    width: 65%;
+    color: var(--fontColor);
+    height: 800px
+}
+.container .search {
+    padding: 60px 30px 0 30px;
+}
+.container .trending {
+    background-color: red;
+    margin-top: 30px;
+    height: 800px;
+}
+.container .trending h1 {
+    padding: 25px;
+    font-style: italic;
+    font-weight: 60;
+}
+.container .trending .songs {
+    background-color: #1ED760;
+    width: 96%;
+    margin: 0 auto;
+}
