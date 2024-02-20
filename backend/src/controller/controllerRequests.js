@@ -1,10 +1,11 @@
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
+//
 const axios = require('axios');
-
-
+//
 exports.getToke = async (req, res) => {
-    res.status(200).json( { tokens: CLIENT_ID, CLIENT_SECRET })
+    res.status(200).json( { tokens: CLIENT_ID, CLIENT_SECRET });
+    //Route test
 }
 
 exports.GetTokenMusic = async (req, res) => {
@@ -52,7 +53,7 @@ exports.GetTraksInformation = async (req, res) => {
         'grant_type=client_credentials',
         {
           headers: {
-            'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`,
+            'Authorization': `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         }
@@ -84,7 +85,7 @@ exports.GetInformationArtist = async ( req, res ) => {
         'grant_type=client_credentials',
         {
           headers: {
-            'Authorization': `Basic ${btoa(`${client_id}:${client_secret}`)}`,
+            'Authorization': `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         }
@@ -101,4 +102,34 @@ exports.GetInformationArtist = async ( req, res ) => {
       console.error("error", error);
       res.status(500).json({ error: "erro inteiro no servidor" })
     }
+}
+
+exports.topTraks = async ( req, res )=>{
+  const { idArtist } = req.params;
+  const urlTopTraks = `https://api.spotify.com/v1/artists/${idArtist}/top-tracks`;
+  try {
+    // Autenticação para obter o token de acesso
+    const authResponse = await axios.post(
+      'https://accounts.spotify.com/api/token',
+      'grant_type=client_credentials',
+      {
+        headers: {
+          'Authorization': `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+      );
+    //
+    const accessToken = authResponse.data.access_token;
+    //
+    const topTraks = await axios.get(urlTopTraks, {
+      headers: {
+        'Autorization': `Bearer ${accessToken}`,
+      },
+    });
+      res.status(200).json({ topTraks : topTraks });
+  } catch (error) {
+    console.error({ Message: error });
+    res.status(500).json({ error: "erro inteiro no servidor" });
+  }
 }

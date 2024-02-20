@@ -9,5 +9,7 @@ Route.get('/artist/:artistId', controller.GetInformationArtist);
 
 Route.get("/", controller.getToke);
 
+Route.get("/topTracksArtist/:idArtist", controller.topTraks);
+
 
 module.exports = Route;
