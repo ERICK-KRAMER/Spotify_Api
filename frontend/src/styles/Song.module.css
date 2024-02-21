@@ -10,6 +10,7 @@
     background-image: linear-gradient(var(--Primary), var(--secondary), var(--Terciary), var(--quartiary));
     width: 25%;
     color: var(--fontColor);
+    z-index: 1;
 }
 .container .imageSong {
     width: 90%;

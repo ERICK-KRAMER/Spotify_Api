@@ -7,7 +7,6 @@
     align-items: center;
     position: relative;
     background-color: #5F446F;
-    /* border: 1px solid #ffffff6c; */
     border: 2px solid #1ED760;
 }
 .InputSearch input {
@@ -30,4 +29,5 @@
     position: absolute;
     right: 10px;
     color: #ffffffc2;
+    cursor: pointer;
 }

@@ -1,7 +1,12 @@
 import style from "../styles/Song.module.css"
 import CapaMusic from "../../public/Thats_The_Spirit.jpg"
+import { useContext } from "react"
+import { AppContext } from "../context/request.music"
+
 
 const Song = () => {
+  const song = useContext(AppContext);
+  
   return (
     <div className={style.container}>
       <div className={style.imageSong}>
