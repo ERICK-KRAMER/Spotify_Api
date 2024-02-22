@@ -1,13 +1,11 @@
 import style from "../styles/search.module.css";
 import { IoSearchOutline } from "react-icons/io5";
-
 interface SearchProps {
   name: string,
   setName: (name: string) => void;
-  searchMusic: () => void;
 }
 
-function Search({ name, setName, searchMusic }: SearchProps) {
+function Search({ name, setName }: SearchProps) {
   return (
     <div className={style.InputSearch}>
       <input
@@ -20,7 +18,7 @@ function Search({ name, setName, searchMusic }: SearchProps) {
           setName(event.target.value);
         }}
       />
-      <IoSearchOutline className={style.icon} type="button" onClick={ searchMusic }/>
+      <IoSearchOutline className={style.icon}/>
     </div>
   );
 }

@@ -1,9 +1,8 @@
-// App.tsx
 import { useState } from 'react';
 import SideBar from './components/sideBar';
 import Song from './components/Song';
-import { AppContext } from './context/request.music';
 import HomePage from './pages/homePage';
+import PlayMusic from './context/playMusic';
 
 interface Song {
   id: string;
@@ -16,13 +15,13 @@ interface Song {
 }
 
 export default function App() {
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [track, setTrack] = useState<Song[]>([])
 
   return (
-    <AppContext.Provider value={{ songs, setSongs }}>
+    <PlayMusic.Provider value={{ track, setTrack }}>
       <SideBar />
       <HomePage />
       <Song />
-    </AppContext.Provider>
+    </PlayMusic.Provider>
   );
 }
