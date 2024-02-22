@@ -8,9 +8,10 @@
 }
 .container {
     background-image: linear-gradient(var(--Primary), var(--secondary), var(--Terciary), var(--quartiary));
-    width: 25%;
+    width: 22%;
     color: var(--fontColor);
     z-index: 1;
+    transition: all .5s ease;
 }
 .container .imageSong {
     width: 90%;

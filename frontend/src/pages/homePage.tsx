@@ -24,11 +24,13 @@ const HomePage = (): JSX.Element => {
   const { setTrack } = usePlayMusicContext();
   //
   useEffect(() => {
-    searchMusic(name)
-      .then(data => {
-        setSongs(data.searchResult.tracks.items);
-      })
-      .catch(error => console.error("Erro ao buscar músicas:", error));
+    if(name !== "") {
+      searchMusic(name)
+        .then(data => {
+          setSongs(data.searchResult.tracks.items);
+        })
+        .catch(error => console.error("Erro ao buscar músicas:", error));
+    }
   }, [name]);
   //
   const nextPage = () => {
