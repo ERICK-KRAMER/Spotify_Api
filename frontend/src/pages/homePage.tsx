@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Search from "../components/search";
 import Style from "../styles/homePage.module.css";
 import { usePlayMusicContext } from "../hooks/usePlayMusicContext";
-import { searchMusic } from "../api/searchMusic";
+import { searchMusic, topTracks } from "../api/searchMusic";
 
 interface Song {
   id: string;
@@ -13,9 +13,15 @@ interface Song {
     }[];
   };
 }
-
+const id = ["5ZfBThYiIIhL7jHMG8gDB2", "3CDoRporvSjdzTrm99a3gi", "5YwzDz4RJfTiMHS4tdR5Lf"];
+//
+const getRandomId = () => {
+  const randomIndex = Math.floor(Math.random() * id.length);
+  return id[randomIndex];
+};
+//
 const ITEMS_PER_PAGE = 6;
-
+//
 const HomePage = (): JSX.Element => {
   //
   const [name, setName] = useState("");
@@ -29,9 +35,22 @@ const HomePage = (): JSX.Element => {
         .then(data => {
           setSongs(data.searchResult.tracks.items);
         })
-        .catch(error => console.error("Erro ao buscar músicas:", error));
+        .catch(error => {
+          throw new Error(`Erro ao buscar músicas: ${error}`)});
     }
   }, [name]);
+  //
+  useEffect(()=>{
+    const idRandom = getRandomId();
+    topTracks([idRandom])
+    .then(data => {
+      setSongs(data);
+      console.log(data);
+    })
+    .catch(error =>{
+      throw new Error(`Erro ao buscar a musica: ${error}`)
+    })
+  },[]);
   //
   const nextPage = () => {
     setCurrentPage(prevPage => prevPage + 1);

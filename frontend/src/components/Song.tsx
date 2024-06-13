@@ -26,7 +26,7 @@ const Song = () => {
       <div className={style.audio}>
           <audio src={track.preview_url} controls />
       </div>
-      {/* <button onClick={ ()=>{ console.log(track) }}>test</button> */}
+      <button onClick={ ()=>{ console.log(track) }}>test</button>
     </div>
   )
 }
