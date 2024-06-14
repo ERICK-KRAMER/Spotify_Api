@@ -1,11 +1,14 @@
-import { Input } from "./components/search/input";
-// import { Sidebar } from "./components/sidebar/sidebar";
+import { MusicContent } from "./components/music/music-content";
+import { MusicContainer } from "./components/music/music-container";
 
 export default function App() {
   return (
     <div>
-      {/* <Sidebar /> */}
-      <Input />
+      <MusicContainer>
+        {Array.from({ length: 8 }, (_, index) => (
+          <MusicContent key={index} />
+        ))}
+      </MusicContainer>
     </div>
-  )
+  );
 }
