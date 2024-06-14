@@ -1,9 +1,11 @@
-import { Sidebar } from "./components/sidebar/sidebar";
+import { Input } from "./components/search/input";
+// import { Sidebar } from "./components/sidebar/sidebar";
 
 export default function App() {
   return (
-    <>
-      <Sidebar />
-    </>
+    <div>
+      {/* <Sidebar /> */}
+      <Input />
+    </div>
   )
 }
