@@ -3,9 +3,11 @@ import { MusicContainer } from "./components/music/music-container";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { Details } from "./components/details/details";
 import { useState } from "react";
+import { useAppMusic } from "./context/appMusicContext";
 
 export default function App() {
   const [hasMusic, setHasMusic] = useState<boolean>(false);
+  const { playbackSong } = useAppMusic();
 
   return (
     <div className="flex w-full h-screen overflow-hidden relative">
@@ -14,7 +16,7 @@ export default function App() {
         {Array.from({ length: 8 }, (_, index) => (
           <MusicContent key={index} />
         ))}
-        <button onClick={() => setHasMusic(!hasMusic)}>Toggle Music</button>
+        <button onClick={playbackSong}>Toggle Music</button>
       </MusicContainer>
       <Details hasMusic={hasMusic} />
     </div>
