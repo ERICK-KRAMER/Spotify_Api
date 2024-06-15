@@ -1,7 +1,7 @@
 
 const MusicContainer = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="container mx-auto flex flex-wrap gap-4 p-4">
+    <div className="flex justify-start flex-wrap gap-4 p-4 ml-20">
       {children}
     </div>
   )
