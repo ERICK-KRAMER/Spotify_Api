@@ -1,16 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from "react";
-
-interface Songs {
-  id: string;
-  title: string;
-  artist: string;
-  album: string;
-}
+import { createContext, useContext, useState } from "react";
+import { Track } from "../types/songs";
 
 interface MethodsProps {
-  playbackSong: () => void;
-  currentSong: Songs | null;
-  setCurrentSong: (song: Songs) => void;
+  playbackSong: (song: Track) => void;
+  currentSong: Track | null;
+  setCurrentSong: (song: Track) => void;
+  hasMusic: boolean;
 }
 
 const AppMusicContext = createContext<MethodsProps>({} as MethodsProps);
@@ -23,17 +18,27 @@ const useAppMusic = () => {
   return context;
 }
 
-const AppMusicContextProvider = ({ children }: { children: ReactNode }) => {
-  const [currentSong, setCurrentSong] = useState<Songs | null>(null);
+const AppMusicContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentSong, setCurrentSong] = useState<Track | null>(null);
+  const [hasMusic, setHasMusic] = useState<boolean>(false);
 
-  const playbackSong = () => {
+  const playbackSong = (song: Track) => {
+    setCurrentSong(song);
+    if (currentSong) {
+      setHasMusic(true);
+      console.log(hasMusic)
+    } else {
+      setHasMusic(false);
+      console.log(hasMusic)
+    }
     console.log('Song is playing:', currentSong);
   }
 
   const methods: MethodsProps = {
     playbackSong,
     currentSong,
-    setCurrentSong
+    setCurrentSong,
+    hasMusic
   }
 
   return (

@@ -77,6 +77,7 @@ class Spotify {
   async Recommendations() {
     try {
       await this.Authorization();
+      console.log(this.token);
       const response = await fetch('https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK', this.getRequestOptions());
       const data = await response.json();
       return data;

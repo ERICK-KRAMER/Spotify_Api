@@ -1,8 +1,8 @@
-interface DetailsProps {
-  hasMusic: boolean;
-}
+import { useAppMusic } from "../../context/appMusicContext"
 
-const Details: React.FC<DetailsProps> = ({ hasMusic }) => {
+const Details = () => {
+  const { hasMusic } = useAppMusic();
+
   return (
     <aside
       className={`w-[350px] bg-neutral-600 p-2 h-screen flex items-end justify-between gap-4 flex-col transition duration-500 rounded-tl-md

@@ -1,14 +1,19 @@
-import Image from '../../../public/Thats_The_Spirit.jpg';
+import { HtmlHTMLAttributes } from "react";
 
-const MusicContent = () => {
+interface MusicContentProps extends HtmlHTMLAttributes<HTMLDivElement> {
+  title: string;
+  image: string;
+}
+
+const MusicContent: React.FC<MusicContentProps> = ({ image, title, ...rest }) => {
   return (
-    <div className='w-40 h-44 flex justify-center items-center flex-col pt-4'>
+    <div className='w-48 h-52 flex justify-center items-center flex-col pt-4' {...rest}>
       <img
-        src={Image}
-        alt="Image Ilustrativa"
-        className='w-full h-full bg-cover object-cover'
+        src={image}
+        alt={title}
+        className='w-44 h-48 bg-cover object-cover'
       />
-      <span className='p-1'>Nome Da Musica</span>
+      <span className='p-1'>{title}</span>
     </div>
   )
 }
