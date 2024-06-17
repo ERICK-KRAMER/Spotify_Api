@@ -20,7 +20,7 @@ const useAppMusic = () => {
 
 const AppMusicContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentSong, setCurrentSong] = useState<Track | null>(null);
-  const [hasMusic, setHasMusic] = useState<boolean>(false);
+  const [hasMusic, setHasMusic] = useState<boolean>(true);
 
   const playbackSong = (song: Track) => {
     setCurrentSong(song);

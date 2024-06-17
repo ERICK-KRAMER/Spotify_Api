@@ -1,5 +1,4 @@
 import { MusicContent } from "./components/music/music-content";
-import { MusicContainer } from "./components/music/music-container";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { Details } from "./components/details/details";
 import { useAppMusic } from "./context/appMusicContext";
@@ -11,15 +10,13 @@ import { Slide } from "./components/slide/slide";
 
 export default function App() {
   const { playbackSong, hasMusic } = useAppMusic();
-  const [album, setAlbum] = useState<Track[]>([]);
   const [recomendation, setRecomendation] = useState<Track[]>([]);
 
   useEffect(() => {
     const handleGetMusics = async () => {
-      const recommendations = await spotify.Recommendations();
-      const albuns = await spotify.Recommendations();
-      setAlbum(albuns.tracks);
-      setRecomendation(recommendations.tracks);
+      const recomendation = await spotify.Recommendations();
+      setRecomendation(recomendation.tracks);
+      console.log(recomendation.tracks);
     }
     handleGetMusics();
   }, []);
@@ -34,11 +31,6 @@ export default function App() {
             <MusicContent image={song.album.images[0].url} title={song.name} onClick={() => playbackSong(song)} />
           ))}
         </Slide>
-        <MusicContainer>
-          {album && album.map(song => (
-            <MusicContent image={song.album.images[0].url} title={song.name} onClick={() => playbackSong(song)} />
-          ))}
-        </MusicContainer>
       </div>
       <Details />
     </div>

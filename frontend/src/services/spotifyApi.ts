@@ -1,8 +1,9 @@
 import axios from "axios";
+import { Root } from "../types/songs";
 
 class Spotify {
-  private client_id: string = import.meta.env.VITE_CLIENT_ID || 'c37f82bf4d5e45a19ab61cfffeb115d0';
-  private client_secret: string = import.meta.env.VITE_CLIENT_SECRET || 'f2b9c4392082445b8c873952f82026cc';
+  private client_id: string = import.meta.env.VITE_CLIENT_ID;
+  private client_secret: string = import.meta.env.VITE_CLIENT_SECRET;
   private token: string | null = null;
 
   private getAuthOptions() {
@@ -74,13 +75,13 @@ class Spotify {
     }
   }
 
-  async Recommendations() {
+  async Recommendations(): Promise<Root> {
     try {
       await this.Authorization();
       console.log(this.token);
       const response = await fetch('https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK', this.getRequestOptions());
       const data = await response.json();
-      return data;
+      return data as Root;
     } catch (error) {
       console.log(error);
       throw error;
