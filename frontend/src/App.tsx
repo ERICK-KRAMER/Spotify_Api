@@ -7,16 +7,19 @@ import { useEffect, useState } from "react";
 import { spotify } from "./services/Spotify";
 import { Track } from "./types/songs";
 import { Search } from "./search/search";
+import { Slide } from "./components/slide/slide";
 
 export default function App() {
   const { playbackSong, hasMusic } = useAppMusic();
-  const [songs, setSongs] = useState<Track[]>([]);
+  const [album, setAlbum] = useState<Track[]>([]);
+  const [recomendation, setRecomendation] = useState<Track[]>([]);
 
   useEffect(() => {
     const handleGetMusics = async () => {
       const recommendations = await spotify.Recommendations();
-      setSongs(recommendations.tracks);
-      console.log(recommendations.tracks);
+      const albuns = await spotify.Recommendations();
+      setAlbum(albuns.tracks);
+      setRecomendation(recommendations.tracks);
     }
     handleGetMusics();
   }, []);
@@ -26,8 +29,13 @@ export default function App() {
       <Sidebar />
       <div className={`ml-14 p-7 flex flex-col gap-4 ${hasMusic ? 'w-9/12' : ''}`}>
         <Search />
+        <Slide>
+          {recomendation && recomendation.map(song => (
+            <MusicContent image={song.album.images[0].url} title={song.name} onClick={() => playbackSong(song)} />
+          ))}
+        </Slide>
         <MusicContainer>
-          {songs && songs.map(song => (
+          {album && album.map(song => (
             <MusicContent image={song.album.images[0].url} title={song.name} onClick={() => playbackSong(song)} />
           ))}
         </MusicContainer>
