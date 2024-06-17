@@ -5,10 +5,11 @@ import { Details } from "./components/details/details";
 import { useAppMusic } from "./context/appMusicContext";
 import { useEffect, useState } from "react";
 import { spotify } from "./services/Spotify";
-import { Album, Track } from "./types/songs";
+import { Track } from "./types/songs";
+import { Search } from "./search/search";
 
 export default function App() {
-  const { playbackSong } = useAppMusic();
+  const { playbackSong, hasMusic } = useAppMusic();
   const [songs, setSongs] = useState<Track[]>([]);
 
   useEffect(() => {
@@ -21,13 +22,16 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex w-full h-screen overflow-hidden relative">
+    <div className="w-full h-screen relative">
       <Sidebar />
-      <MusicContainer>
-        {songs && songs.map(song => (
-          <MusicContent image={song.album.images[0].url} title={song.name} onClick={() => playbackSong(song)} />
-        ))}
-      </MusicContainer>
+      <div className={`ml-14 p-7 flex flex-col gap-4 ${hasMusic ? 'w-9/12' : ''}`}>
+        <Search />
+        <MusicContainer>
+          {songs && songs.map(song => (
+            <MusicContent image={song.album.images[0].url} title={song.name} onClick={() => playbackSong(song)} />
+          ))}
+        </MusicContainer>
+      </div>
       <Details />
     </div>
   );

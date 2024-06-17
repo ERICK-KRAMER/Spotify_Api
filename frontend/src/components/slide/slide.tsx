@@ -21,7 +21,7 @@ const Slide = ({ children }: SlideProps) => {
   };
 
   return (
-    <div className="relative overflow-hidden flex justify-center items-center">
+    <div className="relative overflow-hidden flex justify-center items-center w-full p-2">
       <button
         onClick={prevSlide}
         className="absolute h-full opacity-40 slide-group-hover:opacity-50 transition-opacity duration-300 left-0 z-10 bg-neutral-950 text-white p-2"

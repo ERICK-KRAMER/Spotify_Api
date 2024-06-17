@@ -9,7 +9,7 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className={`w-[300px] bg-neutral-600 p-2 h-screen flex items-end justify-between gap-4 flex-col transition duration-500 rounded-tr-md absolute
+    <aside className={`w-[300px] col-span-1 bg-neutral-600 p-2 h-screen flex items-end justify-between gap-4 flex-col transition duration-500 rounded-tr-md fixed z-20
     ${isOpen ? 'translate-x-0' : '-translate-x-60'} `}>
 
       {isOpen ?
